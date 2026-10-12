@@ -1,26 +1,30 @@
-# --- Kredensial dan Data Sensitif ---
+# --- Kredensial dan data sensitif ---
+.env
 *.env
 kredensial*.txt
 password.txt
 secret.json
 
-# --- Berkas Cadangan Basis Data & Ekspor Lokal ---
+# --- Cadangan basis data dan ekspor lokal ---
 *.sql.bak
 *.sql.tmp
-dump*.sql
+dump.sql
 
-# --- Berkas Sistem Operasi ---
+# --- Berkas sistem operasi ---
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 .DS_Store
 
-# --- Berkas Pengaturan Editor & Workspace ---
+# --- Pengaturan editor ---
 .vscode/
 *.sublime-project
 *.sublime-workspace
 
-# --- Berkas Log dan Temporary ---
+# --- Log dan sementara ---
 *.log
 *.tmp
 temp/
+
+# --- Folder instalasi Git (bukan bagian praktikum) ---
+Git/
