@@ -1,6 +1,9 @@
 -- p01_lingkungan_25430042.sql
--- Nama: Adam Maulana Firmansyah
--- NIM: 25430042
+-- Nama  : Adam Maulana Firmansyah
+-- NIM   : 25430042 (Kelas B)
+-- Tema  : Klinik, organisasi fiktif Bunda_AMF
+-- Basis data praktik : kopma_042
+-- Basis data proyek  : klinik_042
 -- Password sengaja diganti penanda. JANGAN commit password asli.
 
 -- BAGIAN A: Basis data dan akun latihan (Kopma)
@@ -14,7 +17,7 @@ GRANT ALL PRIVILEGES ON kopma_042.* TO 'mhs_042'@'localhost';
 CREATE USER IF NOT EXISTS 'tamu_042'@'localhost' IDENTIFIED BY '<password_tamu>';
 GRANT SELECT ON kopma_042.* TO 'tamu_042'@'localhost';
 
--- BAGIAN B: Milestone Proyek 1 (Tema Klinik - Organisasi Bunda Sehat)
+-- BAGIAN B: Milestone Proyek 1 (Tema Klinik - Organisasi Bunda_AMF)
 CREATE DATABASE IF NOT EXISTS klinik_042
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

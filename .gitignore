@@ -26,5 +26,6 @@ Desktop.ini
 *.tmp
 temp/
 
-# --- Folder instalasi Git (bukan bagian praktikum) ---
+# --- Bukan bagian praktikum ---
 Git/
+Screenshots/
