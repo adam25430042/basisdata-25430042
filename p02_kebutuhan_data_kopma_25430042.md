@@ -25,6 +25,7 @@ Keluhan dari wawancara: harga di nota lama tidak bisa dicek lagi, stok di buku c
 ## 3. Dokumen sumber yang dianalisis
 
 Dokumen sumber adalah **nota penjualan Kopma**. Setiap isian nota adalah kandidat elemen data.
+Isian nota diambil dari contoh nota pada buku praktikum.
 
 | No | Elemen nota | Contoh | Disimpan atau turunan? | Catatan |
 |---|---|---|---|---|
