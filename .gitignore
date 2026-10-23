@@ -29,3 +29,6 @@ temp/
 # --- Bukan bagian praktikum ---
 Git/
 Screenshots/
+# --- Berkas sementara draw.io dan pintasan Windows ---
+*.dtmp
+*.lnk
