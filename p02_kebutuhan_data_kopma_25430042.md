@@ -93,6 +93,7 @@ Dokumen sumber adalah **nota penjualan Kopma**. Setiap isian nota adalah kandida
 | KI-03 | Barang dengan stok di bawah batas minimum | Barang |
 | KI-04 | Sepuluh anggota dengan belanja terbesar per bulan | Penjualan, detail penjualan, anggota |
 | KI-05 | Saldo poin setiap anggota dan jumlah poin yang ditukar per bulan | Anggota, penjualan |
+| KI-06 | Rekap omzet dan jumlah nota per minggu | Penjualan, detail penjualan |
 
 ## 7. Matriks CRUD
 
