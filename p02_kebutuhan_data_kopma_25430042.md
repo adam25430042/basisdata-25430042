@@ -41,7 +41,7 @@ Dokumen sumber adalah **nota penjualan Kopma**. Setiap isian nota adalah kandida
 | 6 | Qty | 3 | Disimpan | Jumlah per baris |
 | 7 | Harga satuan saat transaksi | 4000 | Disimpan | Per baris, agar nota lama tidak berubah (AB-04) |
 | 8 | Subtotal | 12000 | Turunan | qty x harga satuan |
-| 9 | Diskon 5% | 600 | Turunan | Dari status anggota aktif |
+| 9 | Diskon | 5% (Rp600) | Persentase disimpan, nilainya turunan | Persentase yang berlaku saat nota dibuat disimpan per nota (AB-13); nilai rupiah dihitung dari subtotal |
 | 10 | Total | 11400 | Turunan | Subtotal dikurangi diskon |
 | 11 | Bayar | 20000 | Disimpan | Uang yang diterima kasir |
 
@@ -60,7 +60,7 @@ Dokumen sumber adalah **nota penjualan Kopma**. Setiap isian nota adalah kandida
 |---|---|---|
 | Anggota | nomor anggota, NIM, nama, program studi, nomor HP, status aktif | Formulir pendaftaran |
 | Barang | kode, nama, kategori, harga jual, stok, batas minimum stok | Daftar barang, faktur |
-| Penjualan | nomor nota, tanggal-jam, kasir, anggota (opsional), bayar, poin didapat, poin ditukar | Nota penjualan |
+| Penjualan | nomor nota, tanggal-jam, kasir, anggota (opsional), bayar, persen diskon, poin didapat, poin ditukar | Nota penjualan |
 | Detail penjualan | nomor nota, barang, qty, harga saat transaksi | Nota penjualan |
 | Petugas | kode petugas, nama, peran (kasir, gudang, ketua) | Wawancara |
 | Pemasok | kode, nama, telepon, alamat | Faktur pemasok |
@@ -81,6 +81,8 @@ Dokumen sumber adalah **nota penjualan Kopma**. Setiap isian nota adalah kandida
 | AB-09 | Poin hanya diberikan kepada anggota yang berstatus aktif; pembeli umum tidak memperoleh poin. |
 | AB-10 | Saldo poin anggota tidak boleh negatif, sehingga poin yang ditukar tidak boleh melebihi saldo. |
 | AB-11 | Poin yang didapat dan ditukar dicatat per nota dan tidak berubah setelah nota dibuat. |
+| AB-12 | Setiap pembelian dari pemasok diterima oleh tepat satu petugas gudang, dan petugas itu dicatat pada faktur pembelian. |
+| AB-13 | Persentase diskon yang berlaku saat nota dibuat disimpan pada nota (0% untuk pembeli umum) dan tidak berubah meskipun aturan diskon kemudian diubah. |
 
 ## 6. Kebutuhan informasi
 
@@ -121,6 +123,7 @@ Pada Latihan E.1, proses PB-02 juga membaca saldo poin anggota dan membuat catat
 | stok_barang | Jumlah barang tersedia | 35 | Bilangan bulat >= 0 (AB-03) | Petugas gudang |
 | poin_didapat | Poin yang diperoleh pada satu nota | 3 | Bilangan bulat >= 0, dari AB-07 | Kasir |
 | poin_ditukar | Poin yang dipakai pada satu nota | 50 | Kelipatan 50 dan tidak melebihi saldo (AB-08, AB-10) | Kasir |
+| persen_diskon_penjualan | Persentase diskon yang berlaku pada satu nota | 5 | Bilangan bulat 0 sampai 100; 0 untuk pembeli umum (AB-13) | Kasir |
 
 ## 9. Kebutuhan non-fungsional data
 
