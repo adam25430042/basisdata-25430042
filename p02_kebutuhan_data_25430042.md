@@ -115,7 +115,7 @@ Jadwal ini menentukan dokter mana yang dapat dipilih saat mencatat kunjungan (AB
 | Dokter | kode dokter, nama dokter, poli, status aktif | Lembar kunjungan, jadwal |
 | Poli | kode poli, nama poli, tarif konsultasi | Lembar kunjungan |
 | Jadwal praktik | dokter, hari, sesi, jam mulai | Jadwal praktik |
-| Kunjungan | nomor kunjungan, tanggal, pasien, dokter, poli saat kunjungan, keluhan, diagnosa, biaya konsultasi, petugas pendaftaran | Lembar kunjungan |
+| Kunjungan | nomor kunjungan, tanggal, pasien, dokter, poli saat kunjungan, jadwal praktik,, keluhan, diagnosa, biaya konsultasi, petugas pendaftaran | Lembar kunjungan |
 | Obat | kode obat, nama, kekuatan, satuan, harga satuan, stok, batas minimum stok, status aktif | Lembar kunjungan |
 | Detail resep | nomor kunjungan, obat, aturan pakai, jumlah, harga satuan saat kunjungan | Lembar kunjungan |
 | Petugas | kode petugas, nama, peran | Lembar kunjungan, wawancara |
@@ -139,6 +139,7 @@ Nilai turunan yang tidak dicatat sebagai elemen utama: usia pasien, total biaya 
 | AB-10 | Keluhan, diagnosa, dan resep hanya dapat dilihat oleh dokter yang menangani; petugas pendaftaran tidak dapat melihatnya dan kasir hanya melihat rincian biaya | Bagian 9 (privasi) |
 | AB-11 | Pembayaran dicatat setelah dokter menyelesaikan pemeriksaan dan resep; jumlah dibayar sama dengan total biaya setelah diskon, dan setiap pembayaran memiliki nomor kuitansi unik | PB-05 |
 | AB-12 | Data kunjungan, resep, dan pembayaran tidak dihapus; dokter, obat, dan pasien yang tidak lagi aktif ditandai nonaktif | Bagian 9 (retensi) |
+| AB-13 | Setiap kunjungan mencatat tepat satu jadwal praktik (sesi) tempat kunjungan terjadi, dan dokter pada kunjungan harus sama dengan dokter pada jadwal itu. | PB-02, AB-03 |
 
 ## 6. Kebutuhan informasi
 
@@ -151,6 +152,7 @@ Nilai turunan yang tidak dicatat sebagai elemen utama: usia pasien, total biaya 
 | KI-05 | Obat dengan stok di bawah batas minimum | Obat | Petugas obat |
 | KI-06 | Jadwal praktik dokter per hari beserta sesinya | Jadwal praktik, dokter, poli | Petugas pendaftaran |
 | KI-07 | Rincian biaya satu kunjungan yang cocok dengan kuitansi (harga saat kunjungan) | Kunjungan, detail resep, pembayaran | Kasir |
+| KI-08 | Jumlah kunjungan per sesi praktik (pagi, sore, malam) per bulan | Kunjungan, jadwal praktik | Admin klinik |
 
 ## 7. Matriks CRUD
 
