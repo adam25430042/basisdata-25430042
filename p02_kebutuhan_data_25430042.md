@@ -136,7 +136,7 @@ Nilai turunan yang tidak dicatat sebagai elemen utama: usia pasien, total biaya 
 | AB-07 | Stok obat tidak boleh negatif; obat tidak dapat diserahkan melebihi stok yang tersedia | PB-06 |
 | AB-08 | Total biaya kunjungan adalah biaya konsultasi ditambah jumlah (jumlah obat x harga satuan saat kunjungan), dihitung otomatis dan tidak diketik manual | PB-05, Masalah 5 |
 | AB-09 | Pasien yang kontrol ulang dalam 7 hari sejak kunjungan sebelumnya memperoleh diskon 7% pada biaya konsultasi (nilai 7 berasal dari P) | PB-05, parameter P |
-| AB-10 | Keluhan, diagnosa, dan resep hanya dapat dilihat oleh dokter yang menangani; petugas pendaftaran tidak dapat melihatnya dan kasir hanya melihat rincian biaya | Bagian 9 (privasi) |
+| AB-10 | Keluhan dan diagnosa hanya dapat dilihat oleh dokter yang menangani; isi resep (nama obat, jumlah, dan aturan pakai) dapat dilihat dokter yang menangani dan petugas obat yang menyerahkan obat; petugas pendaftaran tidak dapat melihat keluhan, diagnosa, maupun resep, dan kasir hanya melihat rincian biaya | Bagian 9 (privasi) |
 | AB-11 | Pembayaran dicatat setelah dokter menyelesaikan pemeriksaan dan resep; jumlah dibayar sama dengan total biaya setelah diskon, dan setiap pembayaran memiliki nomor kuitansi unik | PB-05 |
 | AB-12 | Data kunjungan, resep, dan pembayaran tidak dihapus; dokter, obat, dan pasien yang tidak lagi aktif ditandai nonaktif | Bagian 9 (retensi) |
 | AB-13 | Setiap kunjungan mencatat tepat satu jadwal praktik (sesi) tempat kunjungan terjadi, dan dokter pada kunjungan harus sama dengan dokter pada jadwal itu. | PB-02, AB-03 |
@@ -202,7 +202,7 @@ Semua entitas memiliki minimal satu huruf C. Huruf D hanya dipakai pada Jadwal p
 | Obat | harga_satuan_obat | Harga satuan saat ini | 500 | Bilangan bulat >= 0 (rupiah) | Admin klinik |
 | Obat | stok_obat | Jumlah obat tersedia | 120 | Bilangan bulat >= 0 (AB-07) | Petugas obat |
 | Obat | stok_minimum_obat | Batas minimum stok | 20 | Bilangan bulat >= 0 | Petugas obat |
-| Detail resep | aturan_pakai | Aturan pakai obat | 3x1 | Data kesehatan, hanya dokter (AB-10) | Dokter |
+| Detail resep | aturan_pakai | Aturan pakai obat | 3x1 | Data kesehatan, hanya dokter dan petugas obat (AB-10) | Dokter |
 | Detail resep | jumlah_obat | Jumlah obat diresepkan | 10 | Bilangan bulat > 0, paling banyak 9 jenis per kunjungan (AB-05) | Dokter |
 | Detail resep | harga_satuan_saat_kunjungan | Harga satuan saat resep dibuat | 500 | Bilangan bulat >= 0, tidak berubah (AB-06) | Dokter |
 | Petugas | kode_petugas | Kode petugas | PT-01 | Unik | Admin klinik |
@@ -232,7 +232,7 @@ Semua entitas memiliki minimal satu huruf C. Huruf D hanya dipakai pada Jadwal p
 |---|---|---|
 | Petugas pendaftaran | Identitas pasien, jadwal, data kunjungan non-klinis | Keluhan, diagnosa, resep |
 | Dokter | Data klinis pasien yang ditangani | Data pembayaran rinci |
-| Petugas obat | Nama obat dan jumlah pada resep, stok | Diagnosa dan keluhan |
+| Petugas obat | Nama obat, jumlah, dan aturan pakai pada resep, stok | Diagnosa dan keluhan |
 | Kasir | Rincian biaya dan kuitansi | Keluhan dan diagnosa |
 | Admin klinik | Data master dan laporan agregat | Data klinis perorangan |
 
