@@ -4,7 +4,7 @@
 - **NIM:** 25430042
 - **Kelas:** B
 - **Tema:** Klinik
-- **Basis data proyek (rencana):** `klinik_042`
+- **Basis data proyek (rencana):** Pasien, kunjungan, detail resepklinik_042Pasien, kunjungan, detail resep
 
 ## 1. Latar belakang dan aktivitas organisasi
 
@@ -115,7 +115,7 @@ Jadwal ini menentukan dokter mana yang dapat dipilih saat mencatat kunjungan (AB
 | Dokter | kode dokter, nama dokter, poli, status aktif | Lembar kunjungan, jadwal |
 | Poli | kode poli, nama poli, tarif konsultasi | Lembar kunjungan |
 | Jadwal praktik | dokter, hari, sesi, jam mulai | Jadwal praktik |
-| Kunjungan | nomor kunjungan, tanggal, pasien, dokter, poli saat kunjungan, jadwal praktik,, keluhan, diagnosa, biaya konsultasi, petugas pendaftaran | Lembar kunjungan |
+| Kunjungan | nomor kunjungan, tanggal, pasien, jadwal praktik (menentukan dokter), poli saat kunjungan, keluhan, diagnosa, biaya konsultasi, petugas pendaftaran | Lembar kunjungan |
 | Obat | kode obat, nama, kekuatan, satuan, harga satuan, stok, batas minimum stok, status aktif | Lembar kunjungan |
 | Detail resep | nomor kunjungan, obat, aturan pakai, jumlah, harga satuan saat kunjungan | Lembar kunjungan |
 | Petugas | kode petugas, nama, peran | Lembar kunjungan, wawancara |
@@ -127,7 +127,7 @@ Nilai turunan yang tidak dicatat sebagai elemen utama: usia pasien, total biaya 
 
 | Kode | Aturan bisnis | Asal |
 |---|---|---|
-| AB-01 | Setiap kunjungan memiliki nomor unik (format KJ-xxxx) dan tepat satu pasien, satu dokter, dan satu poli | PB-02 |
+| AB-01 | Setiap kunjungan memiliki nomor unik (format KJ-xxxx) dan tepat satu pasien, satu jadwal praktik (yang menentukan dokternya), dan satu poli | PB-02 |
 | AB-02 | Setiap pasien memiliki nomor rekam medis unik (format RM-xxxxx) yang dibuat sekali saat pendaftaran dan dipakai pada semua kunjungannya; data pasien disimpan sekali, bukan ditulis ulang per kunjungan | PB-01, Masalah 1 dan 4 |
 | AB-03 | Kunjungan hanya dapat dicatat dengan dokter yang memiliki jadwal pada sesi tersebut (sesi 07.00, 15.30, atau 20.00) | PB-02, PB-07 |
 | AB-04 | Poli pada kunjungan dicatat sebagai poli dokter saat kunjungan; jika dokter pindah poli, kunjungan lama tidak berubah | PB-02, Masalah 3 dan 6 |
@@ -139,7 +139,7 @@ Nilai turunan yang tidak dicatat sebagai elemen utama: usia pasien, total biaya 
 | AB-10 | Keluhan dan diagnosa hanya dapat dilihat oleh dokter yang menangani; isi resep (nama obat, jumlah, dan aturan pakai) dapat dilihat dokter yang menangani dan petugas obat yang menyerahkan obat; petugas pendaftaran tidak dapat melihat keluhan, diagnosa, maupun resep, dan kasir hanya melihat rincian biaya | Bagian 9 (privasi) |
 | AB-11 | Pembayaran dicatat setelah dokter menyelesaikan pemeriksaan dan resep; jumlah dibayar sama dengan total biaya setelah diskon, dan setiap pembayaran memiliki nomor kuitansi unik | PB-05 |
 | AB-12 | Data kunjungan, resep, dan pembayaran tidak dihapus; dokter, obat, dan pasien yang tidak lagi aktif ditandai nonaktif | Bagian 9 (retensi) |
-| AB-13 | Setiap kunjungan mencatat tepat satu jadwal praktik (sesi) tempat kunjungan terjadi, dan dokter pada kunjungan harus sama dengan dokter pada jadwal itu. | PB-02, AB-03 |
+| AB-13 | Setiap kunjungan mencatat tepat satu jadwal praktik (sesi) tempat kunjungan terjadi, dan dokter pada kunjungan ditentukan oleh jadwal itu, sehingga kunjungan tidak menyimpan dokter sendiri. | PB-02, AB-03 |
 
 ## 6. Kebutuhan informasi
 
@@ -147,8 +147,8 @@ Nilai turunan yang tidak dicatat sebagai elemen utama: usia pasien, total biaya 
 |---|---|---|---|
 | KI-01 | Jumlah kunjungan dan pendapatan (konsultasi + obat) per hari dan per bulan | Kunjungan, detail resep, pembayaran | Admin klinik |
 | KI-02 | Lima obat yang paling sering diresepkan per bulan | Detail resep, obat | Admin klinik |
-| KI-03 | Riwayat kunjungan satu pasien (tanggal, dokter, diagnosa, obat) | Pasien, kunjungan, detail resep | Dokter |
-| KI-04 | Jumlah kunjungan per dokter dan per poli per bulan | Kunjungan, dokter | Admin klinik |
+| KI-03 | Riwayat kunjungan satu pasien (tanggal, dokter, diagnosa, obat) | Pasien, kunjungan, jadwal praktik, dokter, detail resep | Dokter ||
+| KI-04 | Jumlah kunjungan per dokter dan per poli per bulan | Kunjungan, jadwal praktik, dokter, poli | Admin klinik |
 | KI-05 | Obat dengan stok di bawah batas minimum | Obat | Petugas obat |
 | KI-06 | Jadwal praktik dokter per hari beserta sesinya | Jadwal praktik, dokter, poli | Petugas pendaftaran |
 | KI-07 | Rincian biaya satu kunjungan yang cocok dengan kuitansi (harga saat kunjungan) | Kunjungan, detail resep, pembayaran | Kasir |
