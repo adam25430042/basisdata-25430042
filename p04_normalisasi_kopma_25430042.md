@@ -60,9 +60,9 @@ Dependensi diturunkan dari aturan bisnis Pertemuan 2, bukan dari isi spreadsheet
 | FD4 | kode_barang -> nama_barang, kategori_barang, harga_jual_barang, stok_barang, stok_min_barang | AB-03 |
 | FD5 | (no_nota_penjualan, kode_barang) -> qty_detail_penjualan, harga_satuan_detail_penjualan | AB-04 |
 | FD6 | qty_detail_penjualan, harga_satuan_detail_penjualan -> subtotal_detail_penjualan | nilai turunan |
-| FD7 | no_faktur_pembelian -> tanggal_pembelian, kode_pemasok, kode_petugas | AB-06, AB-12 |
+| FD7 | id_pembelian -> no_faktur_pembelian, tgl_pembelian, id_pemasok, id_petugas, status_pembelian | AB-06, AB-12 |
 | FD8 | kode_pemasok -> nama_pemasok, telepon_pemasok, alamat_pemasok | definisi entitas pemasok |
-| FD9 | (no_faktur_pembelian, kode_barang) -> qty_detail_pembelian, harga_beli_detail_pembelian | faktur pemasok |
+| FD9 | (id_pembelian, kode_barang) -> qty_detail_pembelian, harga_beli_detail_pembelian | faktur pemasok |
 
 Dependensi yang **salah** dan tidak dipakai: `kode_barang -> harga_satuan_detail_penjualan`. Contoh data yang kebetulan sama tidak membuktikan dependensi, dan AB-04 justru menyatakan harga pada nota dapat berbeda dari harga barang saat ini.
 
@@ -104,7 +104,7 @@ Garis bawah (di sini ditandai PK) adalah kunci primer, UK kunci unik, dan FK kun
 | pemasok | id_pemasok | kode_pemasok | - | nama_pemasok, telepon_pemasok, alamat_pemasok |
 | penjualan | id_penjualan | no_nota_penjualan | id_petugas, id_anggota (boleh kosong) | tgl_penjualan, persen_diskon_penjualan, bayar_penjualan, poin_didapat, poin_ditukar |
 | detail_penjualan | (id_penjualan, id_barang) | - | id_penjualan, id_barang | qty_detail_penjualan, harga_satuan_detail_penjualan |
-| pembelian | id_pembelian | no_faktur_pembelian | id_pemasok, id_petugas | tanggal_pembelian |
+| pembelian | id_pembelian | - | id_pemasok, id_petugas | no_faktur_pembelian (tidak unik), tgl_pembelian, status_pembelian |
 | detail_pembelian | (id_pembelian, id_barang) | - | id_pembelian, id_barang | qty_detail_pembelian, harga_beli_detail_pembelian |
 
 **Perbedaan dengan skema kanonik buku (Tabel 4.2):** skema saya menambah `persen_diskon_penjualan`, `poin_didapat`, dan `poin_ditukar` pada `penjualan` (keputusan Pertemuan 3), serta `id_petugas` pada `pembelian` (AB-12). Pola kunci pengganti `id_*` sebagai kunci primer dan kode alami sebagai kunci unik sama dengan skema kanonik.
@@ -119,7 +119,7 @@ Garis bawah (di sini ditandai PK) adalah kunci primer, UK kunci unik, dan FK kun
 | pemasok | id_pemasok, kode_pemasok | Ya | BCNF |
 | penjualan | id_penjualan, no_nota_penjualan | Ya | BCNF |
 | detail_penjualan | (id_penjualan, id_barang) | Ya | BCNF |
-| pembelian | id_pembelian, no_faktur_pembelian | Ya | BCNF |
+| pembelian | id_pembelian | Ya | BCNF |
 | detail_pembelian | (id_pembelian, id_barang) | Ya | BCNF |
 
 Kunci pengganti `id_*` tidak menghapus dependensi fungsional. Pemeriksaan tetap dilakukan terhadap kunci alami, misalnya `nim_anggota -> no_anggota` pada `anggota`, yang tetap dijaga sebagai kunci unik.
